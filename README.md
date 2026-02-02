@@ -15,7 +15,7 @@ Transform any educational YouTube video into a complete learning package with AI
 
 ### Backend
 - Node.js & Express.js
-- Google Gemini API (gemini-flash-latest)
+- Google Gemini API (gemini-1.5-flash)
 - YouTube Transcript API
 - CORS & dotenv
 
