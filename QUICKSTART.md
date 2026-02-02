@@ -16,13 +16,13 @@ cd frontend
 npm install
 ```
 
-### Step 2: Configure OpenAI API Key
+### Step 2: Configure Google Gemini API Key
 
-1. Get your API key from: https://platform.openai.com/api-keys
+1. Get your FREE API key from: https://aistudio.google.com/app/apikey
 2. Create a file named `.env` in the `backend` folder
 3. Add this line (replace with your actual key):
 ```
-OPENAI_API_KEY=sk-your-actual-api-key-here
+GEMINI_API_KEY=your-actual-gemini-api-key-here
 ```
 
 ### Step 3: Run the Application

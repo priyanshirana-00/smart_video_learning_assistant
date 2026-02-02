@@ -15,7 +15,7 @@ Transform any educational YouTube video into a complete learning package with AI
 
 ### Backend
 - Node.js & Express.js
-- OpenAI API (GPT-3.5-turbo)
+- Google Gemini API (gemini-flash-latest)
 - YouTube Transcript API
 - CORS & dotenv
 
@@ -29,7 +29,7 @@ Transform any educational YouTube video into a complete learning package with AI
 ### Prerequisites
 - Node.js (v14 or higher)
 - npm or yarn
-- OpenAI API key ([Get it here](https://platform.openai.com/api-keys))
+- Google Gemini API key ([Get it free here](https://aistudio.google.com/app/apikey))
 
 ### Step 1: Clone or Navigate to the Project
 ```bash
@@ -95,15 +95,15 @@ Frontend will run on http://localhost:3000
    - Green = Correct answer
    - Red = Incorrect answer
 
-## 🔑 Getting Your OpenAI API Key
+## 🔑 Getting Your Google Gemini API Key
 
-1. Go to [OpenAI Platform](https://platform.openai.com/)
-2. Sign up or log in
-3. Navigate to API Keys section
-4. Create a new secret key
-5. Copy and paste it into your `.env` file
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click "Create API Key"
+4. Copy the API key
+5. Paste it into your `.env` file as `GEMINI_API_KEY`
 
-**Note**: OpenAI API usage is paid. Make sure you have credits in your account.
+**Note**: Gemini API has a generous free tier. No credit card required for basic usage!
 
 ## 📁 Project Structure
 
