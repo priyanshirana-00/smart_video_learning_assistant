@@ -16,7 +16,9 @@ cd frontend
 npm install
 ```
 
-### Step 2: Configure Google Gemini API Key
+### Step 2: Configure Google Gemini API Key (FREE!)
+
+**No credit card needed! Completely free!**
 
 1. Get your FREE API key from: https://aistudio.google.com/app/apikey
 2. Create a file named `.env` in the `backend` folder
@@ -24,6 +26,8 @@ npm install
 ```
 GEMINI_API_KEY=your-actual-gemini-api-key-here
 ```
+
+💡 **Free Tier Limits:** 60 requests/min, 1500 requests/day
 
 ### Step 3: Run the Application
 

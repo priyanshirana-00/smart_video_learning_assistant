@@ -95,7 +95,7 @@ Frontend will run on http://localhost:3000
    - Green = Correct answer
    - Red = Incorrect answer
 
-## 🔑 Getting Your Google Gemini API Key
+## 🔑 Getting Your Google Gemini API Key (100% FREE!)
 
 1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
 2. Sign in with your Google account
@@ -103,7 +103,13 @@ Frontend will run on http://localhost:3000
 4. Copy the API key
 5. Paste it into your `.env` file as `GEMINI_API_KEY`
 
-**Note**: Gemini API has a generous free tier. No credit card required for basic usage!
+**✨ Completely FREE:**
+- No credit card required
+- 60 requests per minute
+- 1,500 requests per day
+- Perfect for learning and development!
+
+Unlike OpenAI which requires payment, Google Gemini offers a generous free tier with no charges!
 
 ## 📁 Project Structure
 
