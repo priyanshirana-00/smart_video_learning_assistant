@@ -13,6 +13,7 @@ frontend/node_modules/
 # Production
 /build
 /dist
+frontend/build
 
 # Logs
 logs
@@ -40,3 +41,7 @@ Thumbs.db
 .cache
 .temp
 *.tmp
+*.backup
+
+# Player scripts and temporary files
+*player-script.js
