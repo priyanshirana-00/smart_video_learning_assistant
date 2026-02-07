@@ -95,7 +95,14 @@ function App() {
     setShowResults(false);
 
     try {
+      // Get API URL from environment or use fallback
       const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      
+      // Log for debugging (will help identify if env variable is loaded)
+      console.log("API URL being used:", apiUrl);
+      console.log("Environment:", process.env.NODE_ENV);
+      console.log("Full API endpoint:", `${apiUrl}/analyze`);
+      
       const res = await fetch(`${apiUrl}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
