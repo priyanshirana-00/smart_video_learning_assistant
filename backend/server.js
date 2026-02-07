@@ -5,7 +5,9 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin:"https://smart-video-learning-assistant.onrender.com/"
+}));
 app.use(express.json());
 
 // Initialize Gemini AI
