@@ -4,6 +4,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+# Allow .env.production and .env.development for deployment configuration
+!frontend/.env.production
+!frontend/.env.development
 
 # Dependencies
 node_modules/

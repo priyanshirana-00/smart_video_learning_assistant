@@ -5,8 +5,30 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 
 const app = express();
+
+// CORS configuration - allow both production URLs
+// You can override this with ALLOWED_ORIGINS environment variable (comma-separated)
+const defaultOrigins = [
+  'https://smart-video-learning-assistant-1.onrender.com',
+  'https://smart-video-learning-assistant.onrender.com',
+  'http://localhost:3000',
+  'http://localhost:3001'
+];
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim())
+  : defaultOrigins;
+
 app.use(cors({
-  origin:"https://smart-video-learning-assistant-1.onrender.com",
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
