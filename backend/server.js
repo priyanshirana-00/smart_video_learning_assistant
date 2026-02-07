@@ -7,12 +7,17 @@ require("dotenv").config();
 const app = express();
 
 // CORS configuration - allow both production URLs
-const allowedOrigins = [
+// You can override this with ALLOWED_ORIGINS environment variable (comma-separated)
+const defaultOrigins = [
   'https://smart-video-learning-assistant-1.onrender.com',
   'https://smart-video-learning-assistant.onrender.com',
   'http://localhost:3000',
   'http://localhost:3001'
 ];
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim())
+  : defaultOrigins;
 
 app.use(cors({
   origin: function(origin, callback) {
