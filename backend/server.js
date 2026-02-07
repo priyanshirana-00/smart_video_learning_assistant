@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors({
-  origin:"https://smart-video-learning-assistant-1.onrender.com"
+  origin:"https://smart-video-learning-assistant-1.onrender.com",
   credentials: true
 }));
 app.use(express.json());
