@@ -95,7 +95,8 @@ function App() {
     setShowResults(false);
 
     try {
-      const res = await fetch("https://smart-video-learning-assistant.onrender.com/analyze", {
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const res = await fetch(`${apiUrl}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
