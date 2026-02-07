@@ -95,7 +95,7 @@ function App() {
     setShowResults(false);
 
     try {
-      const res = await fetch("http://localhost:3001/analyze", {
+      const res = await fetch("https://smart-video-learning-assistant.onrender.com/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
