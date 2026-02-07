@@ -95,13 +95,22 @@ function App() {
     setShowResults(false);
 
     try {
-      // Get API URL from environment or use fallback
-      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      // Priority order for API URL:
+      // 1. Runtime config (window.APP_CONFIG.API_URL) - can be edited after deployment
+      // 2. Build-time environment variable (process.env.REACT_APP_API_URL)
+      // 3. Fallback to localhost for development
+      const apiUrl = 
+        (window.APP_CONFIG && window.APP_CONFIG.API_URL) ||
+        process.env.REACT_APP_API_URL || 
+        "http://localhost:5000";
       
-      // Log for debugging (will help identify if env variable is loaded)
-      console.log("API URL being used:", apiUrl);
-      console.log("Environment:", process.env.NODE_ENV);
-      console.log("Full API endpoint:", `${apiUrl}/analyze`);
+      // Log for debugging (will help identify if config is loaded)
+      console.log("🔧 Configuration loaded:");
+      console.log("  - Runtime config (window.APP_CONFIG):", window.APP_CONFIG);
+      console.log("  - Build-time env var:", process.env.REACT_APP_API_URL);
+      console.log("  - Using API URL:", apiUrl);
+      console.log("  - Environment:", process.env.NODE_ENV);
+      console.log("  - Full endpoint:", `${apiUrl}/analyze`);
       
       const res = await fetch(`${apiUrl}/analyze`, {
         method: "POST",
@@ -112,12 +121,34 @@ function App() {
       const data = await res.json();
       
       if (!res.ok) {
-        throw new Error(data.error || "Failed to analyze video");
+        // Provide more specific error messages
+        if (res.status === 404) {
+          throw new Error(`404 Error: The endpoint '${apiUrl}/analyze' was not found. Check if the backend URL is correct.`);
+        } else if (res.status === 403 || res.status === 0) {
+          throw new Error(`CORS Error: Backend at '${apiUrl}' is not allowing requests from this frontend. Check CORS configuration.`);
+        }
+        throw new Error(data.error || `Server error (${res.status}): ${data.details || 'Failed to analyze video'}`);
       }
 
       setResult(data);
     } catch (err) {
-      setError(err.message || "Failed to connect to server");
+      // Enhanced error messages
+      let errorMessage = err.message || "Failed to connect to server";
+      
+      // Network errors
+      if (err.name === 'TypeError' && err.message.includes('Failed to fetch')) {
+        errorMessage = `Cannot connect to backend at '${apiUrl}'. Possible issues:\n` +
+                      `1. Backend server is not running\n` +
+                      `2. Backend URL is incorrect\n` +
+                      `3. CORS is blocking the request\n` +
+                      `4. Network connectivity issue`;
+      }
+      
+      console.error("❌ Error details:", err);
+      console.error("   API URL used:", apiUrl);
+      console.error("   Error type:", err.name);
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
